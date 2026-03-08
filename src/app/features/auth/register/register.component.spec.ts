@@ -1,23 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(RegisterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [RegisterComponent],
+      providers: [provideHttpClient(), provideRouter([])]
+    }).compileComponents();
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(RegisterComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
