@@ -102,11 +102,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              {
-                "input": "src/global-polyfill.js",
-                "inject": true,
-                "bundleName": "polyfills"
-              }
+              "src/global-polyfill.js"
             ]
           }
         }
