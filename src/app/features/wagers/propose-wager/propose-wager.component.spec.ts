@@ -1,23 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { ProposeWagerComponent } from './propose-wager.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 describe('ProposeWagerComponent', () => {
-  let component: ProposeWagerComponent;
-  let fixture: ComponentFixture<ProposeWagerComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProposeWagerComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(ProposeWagerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [ProposeWagerComponent],
+      providers: [provideHttpClient(), provideRouter([])]
+    }).compileComponents();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(ProposeWagerComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });
