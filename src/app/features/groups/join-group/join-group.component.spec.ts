@@ -1,23 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { JoinGroupComponent } from './join-group.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 describe('JoinGroupComponent', () => {
-  let component: JoinGroupComponent;
-  let fixture: ComponentFixture<JoinGroupComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JoinGroupComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(JoinGroupComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [JoinGroupComponent],
+      providers: [provideHttpClient(), provideRouter([])]
+    }).compileComponents();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(JoinGroupComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

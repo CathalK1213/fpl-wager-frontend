@@ -1,23 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { GroupDashboardComponent } from './group-dashboard.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 describe('GroupDashboardComponent', () => {
-  let component: GroupDashboardComponent;
-  let fixture: ComponentFixture<GroupDashboardComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GroupDashboardComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(GroupDashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [GroupDashboardComponent],
+      providers: [provideHttpClient(), provideRouter([])]
+    }).compileComponents();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(GroupDashboardComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });
