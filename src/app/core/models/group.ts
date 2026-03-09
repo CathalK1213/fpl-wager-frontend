@@ -34,3 +34,24 @@ export interface LeaderboardResponse {
   currentGameweek: number;
   standings: LeaderboardEntry[];
 }
+
+export type MessageType = 'TEXT' | 'GIF';
+
+export interface TrashTalkMessage {
+  id: number;
+  senderUsername: string;
+  groupId: number;
+  gameweek: number;
+  content: string;
+  gifUrl?: string;
+  messageType: MessageType;
+  sentAt: string;
+}
+
+export interface SendMessageRequest {
+  groupId: number;
+  gameweek: number;
+  content?: string;
+  gifUrl?: string;
+  messageType: MessageType;
+}

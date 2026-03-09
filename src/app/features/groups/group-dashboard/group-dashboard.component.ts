@@ -54,6 +54,9 @@ import { GroupResponse } from '../../../core/models/group';
             Wagers
           </a>
           <a mat-button routerLink="/dashboard">Back to Dashboard</a>
+          <a mat-stroked-button [routerLink]="['/groups', group.id, 'trash-talk', 29]">
+            Trash Talk GW29
+          </a>
         </mat-card-actions>
       </mat-card>
     </div>

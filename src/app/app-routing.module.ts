@@ -62,6 +62,11 @@ const routes: Routes = [
     loadComponent: () => import('./features/wagers/debt-tracker/debt-tracker.component').then(m => m.DebtTrackerComponent),
     canActivate: [authGuard]
   },
+  {
+    path: 'groups/:id/trash-talk/:gameweek',
+    loadComponent: () => import('./features/groups/trash-talk/trash-talk.component').then(m => m.TrashTalkComponent),
+    canActivate: [authGuard]
+  },
   { path: '**', redirectTo: '/login' }
 ];
 
