@@ -57,6 +57,11 @@ const routes: Routes = [
     loadComponent: () => import('./features/wagers/propose-wager/propose-wager.component').then(m => m.ProposeWagerComponent),
     canActivate: [authGuard]
   },
+  {
+    path: 'groups/:id/debts',
+    loadComponent: () => import('./features/wagers/debt-tracker/debt-tracker.component').then(m => m.DebtTrackerComponent),
+    canActivate: [authGuard]
+  },
   { path: '**', redirectTo: '/login' }
 ];
 
