@@ -85,6 +85,9 @@ import { LeaderboardResponse, LeaderboardEntry } from '../../../core/models/grou
           <mat-card-actions>
             <a mat-button [routerLink]="['/groups', leaderboard.groupId]">Group Details</a>
             <a mat-button routerLink="/dashboard">Dashboard</a>
+            <a mat-stroked-button [routerLink]="['/groups', leaderboard.groupId, 'wagers']">
+              Wagers
+            </a>
           </mat-card-actions>
         </mat-card>
       </div>

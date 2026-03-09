@@ -47,6 +47,16 @@ const routes: Routes = [
     loadComponent: () => import('./features/groups/group-dashboard/group-dashboard.component').then(m => m.GroupDashboardComponent),
     canActivate: [authGuard]
   },
+  {
+    path: 'groups/:id/wagers',
+    loadComponent: () => import('./features/wagers/wager-list/wager-list.component').then(m => m.WagerListComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'groups/:id/wagers/propose',
+    loadComponent: () => import('./features/wagers/propose-wager/propose-wager.component').then(m => m.ProposeWagerComponent),
+    canActivate: [authGuard]
+  },
   { path: '**', redirectTo: '/login' }
 ];
 
