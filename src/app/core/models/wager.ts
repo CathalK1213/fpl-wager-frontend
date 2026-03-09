@@ -30,3 +30,19 @@ export interface WagerResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface DebtEntry {
+  counterpartyUsername: string;
+  stakeType: StakeType;
+  stakeAmount?: number;
+  stakeDescription?: string;
+  wagerId: number;
+}
+
+export interface DebtSummary {
+  username: string;
+  owes: DebtEntry[];
+  owedBy: DebtEntry[];
+  totalWagersWon: number;
+  totalWagersLost: number;
+}

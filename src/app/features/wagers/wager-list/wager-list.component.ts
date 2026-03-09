@@ -58,6 +58,7 @@ import { WagerResponse } from '../../../core/models/wager';
 
       <div class="back">
         <a mat-button [routerLink]="['/groups', groupId]">Back to Group</a>
+        <a mat-stroked-button [routerLink]="['/groups', groupId, 'debts']">My Debts</a>
       </div>
     </div>
   `,

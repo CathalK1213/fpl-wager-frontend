@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { ProposeWagerRequest, WagerResponse } from '../models/wager';
+import { ProposeWagerRequest, WagerResponse, DebtSummary } from '../models/wager';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +26,13 @@ export class WagerService {
 
   getMyWagers(): Observable<WagerResponse[]> {
     return this.http.get<WagerResponse[]>(`${this.apiUrl}/my`);
+  }
+
+  resolveWager(wagerId: number, winnerId: number): Observable<WagerResponse> {
+    return this.http.post<WagerResponse>(`${this.apiUrl}/${wagerId}/resolve?winnerId=${winnerId}`, {});
+  }
+
+  getMyDebts(groupId: number): Observable<DebtSummary> {
+    return this.http.get<DebtSummary>(`${environment.apiUrl}/groups/${groupId}/debts`);
   }
 }
