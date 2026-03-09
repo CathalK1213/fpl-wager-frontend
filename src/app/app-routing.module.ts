@@ -4,6 +4,14 @@ import { inject } from '@angular/core';
 import { AuthService } from './core/services/auth.service';
 import { Router } from '@angular/router';
 
+const authGuard = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  if (auth.isLoggedIn()) return true;
+  router.navigate(['/login']);
+  return false;
+};
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
@@ -17,13 +25,22 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
-    canActivate: [() => {
-      const auth = inject(AuthService);
-      const router = inject(Router);
-      if (auth.isLoggedIn()) return true;
-      router.navigate(['/login']);
-      return false;
-    }]
+    canActivate: [authGuard]
+  },
+  {
+    path: 'groups/create',
+    loadComponent: () => import('./features/groups/create-group/create-group.component').then(m => m.CreateGroupComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'groups/join',
+    loadComponent: () => import('./features/groups/join-group/join-group.component').then(m => m.JoinGroupComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'groups/:id',
+    loadComponent: () => import('./features/groups/group-dashboard/group-dashboard.component').then(m => m.GroupDashboardComponent),
+    canActivate: [authGuard]
   },
   { path: '**', redirectTo: '/login' }
 ];
