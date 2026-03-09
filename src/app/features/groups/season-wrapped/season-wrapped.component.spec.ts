@@ -1,23 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { SeasonWrappedComponent } from './season-wrapped.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 describe('SeasonWrappedComponent', () => {
-  let component: SeasonWrappedComponent;
-  let fixture: ComponentFixture<SeasonWrappedComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SeasonWrappedComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(SeasonWrappedComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [SeasonWrappedComponent],
+      providers: [provideHttpClient(), provideRouter([])]
+    }).compileComponents();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(SeasonWrappedComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });
