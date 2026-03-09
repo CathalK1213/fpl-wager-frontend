@@ -38,6 +38,11 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'groups/:id/leaderboard',
+    loadComponent: () => import('./features/groups/group-leaderboard/group-leaderboard.component').then(m => m.GroupLeaderboardComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: 'groups/:id',
     loadComponent: () => import('./features/groups/group-dashboard/group-dashboard.component').then(m => m.GroupDashboardComponent),
     canActivate: [authGuard]
