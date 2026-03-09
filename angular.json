@@ -101,7 +101,13 @@
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "src/global-polyfill.js",
+                "inject": true,
+                "bundleName": "polyfills"
+              }
+            ]
           }
         }
       }
