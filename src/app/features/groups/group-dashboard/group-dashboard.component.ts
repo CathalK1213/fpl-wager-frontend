@@ -57,6 +57,9 @@ import { GroupResponse } from '../../../core/models/group';
           <a mat-stroked-button [routerLink]="['/groups', group.id, 'trash-talk', 29]">
             Trash Talk GW29
           </a>
+          <a mat-stroked-button [routerLink]="['/groups', group.id, 'wrapped']">
+            Season Wrapped
+          </a>
         </mat-card-actions>
       </mat-card>
     </div>

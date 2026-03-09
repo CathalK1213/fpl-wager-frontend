@@ -67,6 +67,11 @@ const routes: Routes = [
     loadComponent: () => import('./features/groups/trash-talk/trash-talk.component').then(m => m.TrashTalkComponent),
     canActivate: [authGuard]
   },
+  {
+    path: 'groups/:id/wrapped',
+    loadComponent: () => import('./features/groups/season-wrapped/season-wrapped.component').then(m => m.SeasonWrappedComponent),
+    canActivate: [authGuard]
+  },
   { path: '**', redirectTo: '/login' }
 ];
 

@@ -55,3 +55,22 @@ export interface SendMessageRequest {
   gifUrl?: string;
   messageType: MessageType;
 }
+
+export interface SeasonWrappedResponse {
+  username: string;
+  fplTeamName: string;
+  totalPoints: number;
+  overallRank: number;
+  bestGameweekPoints: number;
+  bestGameweek: number;
+  currentGameweek: number;
+  totalWagers: number;
+  wagersWon: number;
+  wagersLost: number;
+  wagerWinRate: number;
+  biggestWinDescription?: string;
+  worstLossDescription?: string;
+  groupPosition: number;
+  groupName: string;
+  totalGroupMembers: number;
+}
