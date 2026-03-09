@@ -16,3 +16,21 @@ export interface GroupResponse {
   members: MemberResponse[];
   createdAt: string;
 }
+
+export interface LeaderboardEntry {
+  userId: number;
+  username: string;
+  fplTeamName: string;
+  gameweekPoints: number;
+  totalPoints: number;
+  overallRank: number;
+  position: number;
+  fplTeamId: number;
+}
+
+export interface LeaderboardResponse {
+  groupId: number;
+  groupName: string;
+  currentGameweek: number;
+  standings: LeaderboardEntry[];
+}

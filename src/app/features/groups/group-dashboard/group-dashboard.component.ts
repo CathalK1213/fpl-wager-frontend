@@ -47,6 +47,9 @@ import { GroupResponse } from '../../../core/models/group';
           </mat-list>
         </mat-card-content>
         <mat-card-actions>
+          <a mat-raised-button color="primary" [routerLink]="['/groups', group.id, 'leaderboard']">
+            View Leaderboard
+          </a>
           <a mat-button routerLink="/dashboard">Back to Dashboard</a>
         </mat-card-actions>
       </mat-card>

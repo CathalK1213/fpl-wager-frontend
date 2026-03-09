@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { CreateGroupRequest, GroupResponse } from '../models/group';
+import { CreateGroupRequest, GroupResponse, LeaderboardResponse } from '../models/group';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +26,9 @@ export class GroupService {
 
   getGroup(groupId: number): Observable<GroupResponse> {
     return this.http.get<GroupResponse>(`${this.apiUrl}/${groupId}`);
+  }
+
+  getLeaderboard(groupId: number): Observable<LeaderboardResponse> {
+    return this.http.get<LeaderboardResponse>(`${this.apiUrl}/${groupId}/leaderboard`);
   }
 }
