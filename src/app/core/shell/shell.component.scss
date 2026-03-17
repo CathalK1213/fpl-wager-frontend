@@ -1,0 +1,60 @@
+.shell-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.shell-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 8px;
+
+  .toolbar-logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .toolbar-spacer {
+    flex: 1;
+  }
+
+  .toolbar-username {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-right: 8px;
+  }
+
+  .toolbar-link-active {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+  }
+}
+
+.shell-sidenav {
+  width: 240px;
+
+  .sidenav-header {
+    padding: 20px 16px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    .sidenav-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+  }
+
+  .active-link {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+  }
+}
+
+.shell-content {
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+}
