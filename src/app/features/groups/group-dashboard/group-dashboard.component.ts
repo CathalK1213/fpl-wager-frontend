@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
@@ -53,9 +54,8 @@ import { GroupResponse } from '../../../core/models/group';
           <a mat-stroked-button [routerLink]="['/groups', group.id, 'wagers']">
             Wagers
           </a>
-          <a mat-button routerLink="/dashboard">Back to Dashboard</a>
-          <a mat-stroked-button [routerLink]="['/groups', group.id, 'trash-talk', 29]">
-            Trash Talk GW29
+          <a mat-stroked-button [routerLink]="['/groups', group.id, 'trash-talk', currentGameweek]">
+            Trash Talk GW{{ currentGameweek }}
           </a>
           <a mat-stroked-button [routerLink]="['/groups', group.id, 'wrapped']">
             Season Wrapped
@@ -73,7 +73,6 @@ import { GroupResponse } from '../../../core/models/group';
       display: flex;
       justify-content: center;
       padding: 32px;
-      background: #f5f5f5;
       min-height: 100vh;
     }
     .card {
@@ -93,14 +92,30 @@ import { GroupResponse } from '../../../core/models/group';
 export class GroupDashboardComponent implements OnInit {
   group: GroupResponse | null = null;
   errorMessage = '';
+  currentGameweek = 1;
 
-  constructor(private route: ActivatedRoute, private groupService: GroupService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private groupService: GroupService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     const groupId = Number(this.route.snapshot.paramMap.get('id'));
+
     this.groupService.getGroup(groupId).subscribe({
       next: (group) => this.group = group,
       error: () => this.errorMessage = 'Group not found'
+    });
+
+    this.http.get<any>('https://fantasy.premierleague.com/api/bootstrap-static/').subscribe({
+      next: (data) => {
+        const current = data.events?.find((e: any) => e.is_current);
+        if (current) this.currentGameweek = current.id;
+      },
+      error: () => {
+        // silently fall back to 1 — not worth breaking the page over
+      }
     });
   }
 }
