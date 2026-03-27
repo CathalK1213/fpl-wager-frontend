@@ -1,0 +1,61 @@
+<mat-sidenav-container class="shell-container">
+
+  <!-- Mobile sidenav drawer -->
+  <mat-sidenav #sidenav mode="over" position="start" class="shell-sidenav">
+    <div class="sidenav-header">
+      <span class="sidenav-title">⚽ FPL Wager</span>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link"
+         (click)="closeSidenav()">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item (click)="logout()">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span matListItemTitle>Logout</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+
+    <!-- Top toolbar -->
+    <mat-toolbar color="primary" class="shell-toolbar">
+
+      <!-- Hamburger: mobile only -->
+      <button
+        *ngIf="isMobile"
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        aria-label="Toggle menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- Logo -->
+      <a routerLink="/dashboard" class="toolbar-logo">
+        ⚽ FPL Wager
+      </a>
+
+      <span class="toolbar-spacer"></span>
+
+      <!-- Desktop nav links -->
+      <ng-container *ngIf="!isMobile">
+        <a mat-button routerLink="/dashboard" routerLinkActive="toolbar-link-active">
+          Dashboard
+        </a>
+        <span class="toolbar-username">Hi, {{ username }}</span>
+        <button mat-stroked-button (click)="logout()">Logout</button>
+      </ng-container>
+
+    </mat-toolbar>
+
+    <!-- Page content -->
+    <main class="shell-content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -32,11 +32,7 @@ import { FplEntry } from '../../core/models/auth';
   ],
   template: `
     <div class="container">
-      <div class="header">
-        <h1>Welcome, {{ (authService.currentUser$ | async)?.username }}!</h1>
-        <button mat-raised-button color="warn" (click)="authService.logout()">Logout</button>
-      </div>
-
+      <h1>Welcome, {{ (authService.currentUser$ | async)?.username }}!</h1>
       <!-- FPL Team Card -->
       <mat-card class="card">
         <mat-card-header>
@@ -95,12 +91,6 @@ import { FplEntry } from '../../core/models/auth';
       padding: 32px;
       max-width: 800px;
       margin: 0 auto;
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
     }
     .card {
       margin-bottom: 24px;
