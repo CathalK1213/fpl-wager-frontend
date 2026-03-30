@@ -62,7 +62,7 @@ interface GiphyResult {
         <div *ngFor="let msg of messages"
              class="message-row"
              [class.own]="msg.senderUsername === currentUsername">
-          <div class="message-bubble">
+          <div class="message-bubble" [class.gif-bubble]="msg.messageType === 'GIF'">
             <span class="sender" *ngIf="msg.senderUsername !== currentUsername">
               {{ msg.senderUsername }}
             </span>
@@ -180,6 +180,11 @@ interface GiphyResult {
           border-radius: 18px 18px 4px 18px;
           .sender { display: none; }
           .timestamp { color: rgba(255,255,255,0.7); }
+
+          // Don't colour the background GIF bubbles even when own
+          &.gif-bubble {
+            background: transparent;
+          }
         }
       }
     }
@@ -192,6 +197,13 @@ interface GiphyResult {
       display: flex;
       flex-direction: column;
       gap: 4px;
+
+      &.gif-bubble {
+        background: transparent;
+        padding: 0;
+        border-radius: 12px;
+        overflow: hidden;
+      }
 
       .sender { font-size: 0.75rem; font-weight: 600; color: #e91e8c; }
       .message-text { margin: 0; font-size: 0.95rem; word-break: break-word; }

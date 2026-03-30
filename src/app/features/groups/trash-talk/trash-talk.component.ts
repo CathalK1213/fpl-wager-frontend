@@ -155,18 +155,23 @@ export class TrashTalkComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.groupId = Number(this.route.snapshot.paramMap.get('id'));
     this.gameweek = Number(this.route.snapshot.paramMap.get('gameweek'));
 
-    const storedUser = localStorage.getItem('currentUser');
+    // Fix: correct localStorage key
+    const storedUser = localStorage.getItem('fpl_user');
     if (storedUser) {
       this.currentUsername = JSON.parse(storedUser).username;
     }
 
     this.trashTalkService.getMessages(this.groupId, this.gameweek).subscribe({
-      next: (messages) => this.messages = messages
+      next: (messages) => {
+        this.messages = messages;
+        this.shouldScroll = true;
+      }
     });
 
     this.trashTalkService.connect(this.groupId, this.gameweek, (msg) => {
       if (!this.messages.find(m => m.id === msg.id)) {
         this.messages.push(msg);
+        this.shouldScroll = true;
       }
     });
   }
@@ -175,8 +180,13 @@ export class TrashTalkComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.trashTalkService.disconnect();
   }
 
+  shouldScroll = false;
+
   ngAfterViewChecked(): void {
-    this.scrollToBottom();
+    if (this.shouldScroll) {
+      this.scrollToBottom();
+      this.shouldScroll = false;
+    }
   }
 
   sendMessage(): void {
