@@ -168,30 +168,9 @@ interface GiphyResult {
       mat-icon { font-size: 48px; width: 48px; height: 48px; }
     }
 
-    .message-row {
-      display: flex;
-      justify-content: flex-start;
-
-      &.own {
-        justify-content: flex-end;
-        .message-bubble {
-          background: #e91e8c;
-          color: white;
-          border-radius: 18px 18px 4px 18px;
-          .sender { display: none; }
-          .timestamp { color: rgba(255,255,255,0.7); }
-
-          // Don't colour the background GIF bubbles even when own
-          &.gif-bubble {
-            background: transparent;
-          }
-        }
-      }
-    }
-
     .message-bubble {
       max-width: 70%;
-      background: #2a2a2a;
+      background: var(--bubble-bg);
       border-radius: 18px 18px 18px 4px;
       padding: 10px 14px;
       display: flex;
@@ -205,14 +184,31 @@ interface GiphyResult {
         overflow: hidden;
       }
 
-      .sender { font-size: 0.75rem; font-weight: 600; color: #e91e8c; }
+      .sender { font-size: 0.75rem; font-weight: 600; color: #4a9eff; }
       .message-text { margin: 0; font-size: 0.95rem; word-break: break-word; }
       .message-gif { max-width: 100%; max-height: 200px; border-radius: 8px; }
       .video-embed a {
         display: flex; align-items: center; gap: 4px;
-        color: #e91e8c; font-size: 0.85rem; word-break: break-all;
+        color: #4a9eff; font-size: 0.85rem; word-break: break-all;
       }
       .timestamp { font-size: 0.7rem; opacity: 0.6; align-self: flex-end; }
+    }
+
+    .message-row {
+      display: flex;
+      justify-content: flex-start;
+
+      &.own {
+        justify-content: flex-end;
+        .message-bubble {
+          background: var(--bubble-own-bg);
+          color: white;
+          border-radius: 18px 18px 4px 18px;
+          .sender { display: none; }
+          .timestamp { color: rgba(255,255,255,0.7); }
+          &.gif-bubble { background: transparent; }
+        }
+      }
     }
 
     .gif-picker {

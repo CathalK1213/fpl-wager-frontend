@@ -12,6 +12,11 @@
         <span matListItemTitle>Dashboard</span>
       </a>
       <mat-divider></mat-divider>
+      <a mat-list-item (click)="toggleTheme(); closeSidenav()">
+        <mat-icon matListItemIcon>{{ themeService.isDark ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        <span matListItemTitle>{{ themeService.isDark ? 'Light mode' : 'Dark mode' }}</span>
+      </a>
+      <mat-divider></mat-divider>
       <a mat-list-item (click)="logout()">
         <mat-icon matListItemIcon>logout</mat-icon>
         <span matListItemTitle>Logout</span>
@@ -47,6 +52,10 @@
           Dashboard
         </a>
         <span class="toolbar-username">Hi, {{ username }}</span>
+        <button mat-icon-button (click)="toggleTheme()"
+                [title]="themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+          <mat-icon>{{ themeService.isDark ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
         <button mat-stroked-button (click)="logout()">Logout</button>
       </ng-container>
 

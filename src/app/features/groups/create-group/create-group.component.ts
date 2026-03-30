@@ -60,7 +60,7 @@ import { GroupService } from '../../../core/services/group.service';
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: #f5f5f5;
+      background: transparent;
     }
     .card {
       width: 100%;

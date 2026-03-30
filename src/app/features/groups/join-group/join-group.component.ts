@@ -47,8 +47,11 @@ import { GroupService } from '../../../core/services/group.service';
           </form>
         </mat-card-content>
         <mat-card-actions>
-          <p>Want to create a group? <a routerLink="/groups/create">Create a group</a></p>
-          <p><a routerLink="/dashboard">Back to dashboard</a></p>
+          <p style="text-align: center; margin: 0;">
+            <a routerLink="/groups/create">Create a group</a>
+            &nbsp;·&nbsp;
+            <a routerLink="/dashboard">Back to dashboard</a>
+          </p>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -59,7 +62,7 @@ import { GroupService } from '../../../core/services/group.service';
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: #f5f5f5;
+      background: transparent;
     }
     .card {
       width: 100%;

@@ -108,7 +108,7 @@ import { DebtSummary, DebtEntry, StakeType } from '../../../core/models/wager';
     .stake {
       margin-left: 8px;
       font-weight: bold;
-      color: #c2185b;
+      color: #0f2540;
     }
     .empty {
       color: grey;

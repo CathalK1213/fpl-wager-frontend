@@ -97,12 +97,12 @@ import { TrashTalkMessage } from '../../../core/models/group';
     }
     .message-bubble {
       max-width: 70%;
-      background: #3a3a3a;
+      background: var(--bubble-other-bg);
       padding: 8px 12px;
       border-radius: 12px;
     }
     .own-message .message-bubble {
-      background: #c2185b;
+      background: var(--bubble-own-bg);
       color: white;
     }
     .sender {
