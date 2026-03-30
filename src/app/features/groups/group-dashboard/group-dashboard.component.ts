@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { GroupService } from '../../../core/services/group.service';
 import { GroupResponse } from '../../../core/models/group';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-group-dashboard',
@@ -54,8 +55,10 @@ import { GroupResponse } from '../../../core/models/group';
           <a mat-stroked-button [routerLink]="['/groups', group.id, 'wagers']">
             Wagers
           </a>
-          <a mat-stroked-button [routerLink]="['/groups', group.id, 'trash-talk', currentGameweek]">
-            Trash Talk GW{{ currentGameweek }}
+          <a mat-stroked-button
+             [routerLink]="currentGameweek > 0 ? ['/groups', group.id, 'trash-talk', currentGameweek] : null"
+             [disabled]="currentGameweek === 0">
+            Trash Talk {{ currentGameweek > 0 ? 'GW' + currentGameweek : '...' }}
           </a>
           <a mat-stroked-button [routerLink]="['/groups', group.id, 'wrapped']">
             Season Wrapped
@@ -87,12 +90,18 @@ import { GroupResponse } from '../../../core/models/group';
       font-size: 12px;
       color: grey;
     }
+    mat-card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 16px;
+    }
   `]
 })
 export class GroupDashboardComponent implements OnInit {
   group: GroupResponse | null = null;
   errorMessage = '';
-  currentGameweek = 1;
+  currentGameweek = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -108,14 +117,11 @@ export class GroupDashboardComponent implements OnInit {
       error: () => this.errorMessage = 'Group not found'
     });
 
-    this.http.get<any>('https://fantasy.premierleague.com/api/bootstrap-static/').subscribe({
-      next: (data) => {
-        const current = data.events?.find((e: any) => e.is_current);
-        if (current) this.currentGameweek = current.id;
+    this.http.get<number>(`${environment.apiUrl}/fpl/current-gameweek`).subscribe({
+      next: (gameweek) => {
+        if (gameweek) this.currentGameweek = gameweek;
       },
-      error: () => {
-        // silently fall back to 1 — not worth breaking the page over
-      }
+      error: () => {}
     });
   }
 }
