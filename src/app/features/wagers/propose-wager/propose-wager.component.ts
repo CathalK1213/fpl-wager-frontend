@@ -107,7 +107,7 @@ import { GroupResponse, MemberResponse } from '../../../core/models/group';
       display: flex;
       justify-content: center;
       padding: 32px;
-      background: #f5f5f5;
+      background: transparent;
       min-height: 100vh;
     }
     .card {

@@ -3,6 +3,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-shell',
@@ -17,7 +18,8 @@ export class ShellComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public themeService: ThemeService
   ) {}
 
   ngOnInit(): void {
@@ -45,5 +47,9 @@ export class ShellComponent implements OnInit {
     if (this.isMobile) {
       this.sidenav.close();
     }
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggle();
   }
 }

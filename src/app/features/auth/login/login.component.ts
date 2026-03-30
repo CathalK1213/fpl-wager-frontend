@@ -68,7 +68,7 @@ import { AuthService } from '../../../core/services/auth.service';
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: #f5f5f5;
+      background: transparent;
     }
     .auth-card {
       width: 100%;
