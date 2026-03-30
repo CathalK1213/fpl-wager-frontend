@@ -50,16 +50,23 @@ import { WagerResponse } from '../../../core/models/wager';
             🏆 Winner: {{ wager.winnerUsername }}
           </p>
         </mat-card-content>
-        <mat-card-actions *ngIf="wager.status === 'PROPOSED' && wager.opponentUsername === currentUsername">
-          <button mat-raised-button color="primary" (click)="respond(wager.id, 'ACCEPT')">Accept</button>
-          <button mat-stroked-button color="warn" (click)="respond(wager.id, 'DECLINE')">Decline</button>
+        <mat-card-actions>
+          <ng-container *ngIf="wager.status === 'PROPOSED' && wager.opponentUsername === currentUsername">
+            <button mat-raised-button color="primary" (click)="respond(wager.id, 'ACCEPT')">Accept</button>
+            <button mat-stroked-button color="warn" (click)="respond(wager.id, 'DECLINE')">Decline</button>
+          </ng-container>
+          <!-- Chat button visible to both participants -->
+          <a *ngIf="isParticipant(wager)"
+             mat-stroked-button
+             [routerLink]="['/groups', groupId, 'wagers', wager.id, 'chat']">
+            <mat-icon>chat</mat-icon> Chat
+          </a>
         </mat-card-actions>
       </mat-card>
 
       <div class="back">
-        <a routerLink="/groups/{{ groupId }}">Back to Group</a>
-        &nbsp;&nbsp;
-        <a routerLink="/groups/{{ groupId }}/debts">My Debts</a>
+        <a mat-button [routerLink]="['/groups', groupId]">← Back to Group</a>
+        <a mat-button [routerLink]="['/groups', groupId, 'debts']">My Debts</a>
       </div>
     </div>
   `,
@@ -111,11 +118,17 @@ export class WagerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.groupId = Number(this.route.snapshot.paramMap.get('id'));
-    const storedUser = localStorage.getItem('currentUser');
+    // Fix: correct localStorage key is 'fpl_user', not 'currentUser'
+    const storedUser = localStorage.getItem('fpl_user');
     if (storedUser) {
       this.currentUsername = JSON.parse(storedUser).username;
     }
     this.loadWagers();
+  }
+
+  isParticipant(wager: WagerResponse): boolean {
+    return wager.proposerUsername === this.currentUsername ||
+      wager.opponentUsername === this.currentUsername;
   }
 
   loadWagers(): void {

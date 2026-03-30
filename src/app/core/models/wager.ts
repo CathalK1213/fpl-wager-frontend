@@ -1,6 +1,26 @@
 export type WagerStatus = 'PROPOSED' | 'COUNTER_OFFERED' | 'ACCEPTED' | 'ACTIVE' | 'LOCKED' | 'PENDING_CONFIRM' | 'COMPLETED' | 'SETTLED' | 'DECLINED';
 export type WagerType = 'ONCE_OFF' | 'RECURRING';
 export type StakeType = 'PINT' | 'COFFEE' | 'MEAL' | 'MONEY' | 'OTHER';
+export type MessageType = 'TEXT' | 'GIF' | 'VIDEO';
+
+export interface WagerMessage {
+  id: number;
+  wagerId: number;
+  senderUsername: string;
+  content?: string;
+  gifUrl?: string;
+  videoUrl?: string;
+  messageType: MessageType;
+  sentAt: string;
+}
+
+export interface SendWagerMessageRequest {
+  wagerId: number;
+  content?: string;
+  gifUrl?: string;
+  videoUrl?: string;
+  messageType: MessageType;
+}
 
 export interface ProposeWagerRequest {
   opponentId: number;

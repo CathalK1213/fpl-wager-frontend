@@ -67,7 +67,12 @@ const routes: Routes = [
       {
         path: 'groups/:id/wrapped',
         loadComponent: () => import('./features/groups/season-wrapped/season-wrapped.component').then(m => m.SeasonWrappedComponent)
-      }
+      },
+      {
+        path: 'groups/:id/wagers/:wagerId/chat',
+        loadComponent: () => import('./features/wagers/wager-chat/wager-chat.component')
+          .then(m => m.WagerChatComponent)
+      },
     ]
   },
   { path: '**', redirectTo: '/login' }
